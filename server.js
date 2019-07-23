@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 // });
 app.get('/', newSearch);
 app.post('/', createSearch);
-app.get(`*`, (showError));
+app.get('*', showError);
 
 //Helper
 
@@ -43,8 +43,6 @@ function checkData(info, property) {
   }
 }
 
-//error messages
-
 function handleError(error, response) {
   console.error(error);
   if(response) {
@@ -54,10 +52,11 @@ function handleError(error, response) {
 function showError(request, response) {
   response.render('pages/error');
 }
-////
+
 function newSearch(request, response) {
   response.render('pages/index');
 }
+
 function createSearch(request, response) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -70,13 +69,11 @@ function createSearch(request, response) {
 
   superagent.get(url)
     .then( (results) => {
-      let test = results.body.items.map ( (bookInfo) => {
+      let data = results.body.items.map ( (bookInfo) => {
         return new Book(bookInfo);
       })
-      console.log('this is the first then', test);
-      return test;
+      return data;
     }).then( results => {
-      console.log('this should be an array', results);
       response.render('pages/searches/show', { searchResults: results });
     })
     .catch( (error) => {
@@ -84,7 +81,6 @@ function createSearch(request, response) {
     })
 
 }
-console.log();
 
 //Listen
 app.listen(PORT, () => {

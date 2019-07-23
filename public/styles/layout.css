@@ -1,0 +1,45 @@
+@media all and (max-width:768px){
+  
+  /*--  --*/
+
+  body {
+    width: 95%;
+    margin: auto;
+  }
+
+  #create {
+    width: 90%;
+    margin: auto;
+  }
+
+  #create > input {
+    background-color: white;
+    height: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 15px;
+    padding-left: 3px;
+  }
+
+  #create > fieldset {
+    background-color: white;
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: left;
+    line-height: 30px;
+    vertical-align: center;
+    padding-left: 5px;
+  }
+
+  button {
+    background-color: #3D405B;
+    color: white;
+    height: 30px;
+  }
+
+
+}
+
+@media all and (min-width:769px){
+
+}
