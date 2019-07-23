@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Cinzel&display=swap');
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    color: blue;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+}
