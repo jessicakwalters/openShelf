@@ -1,19 +1,31 @@
 # openShelf
 A Book Wiki
 
-Number and name of feature: ________________________________
+Number and name of feature: 1. Add Initial Route
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 Hour
 
-Start time: _____
+Start time: 8:45
 
-Finish time: _____
+Finish time: 9:00
 
-Actual time needed to complete: _____
+Actual time needed to complete: 15 Mins
+
+=======================================
+
+Number and name of feature: 2. Add Search
+
+Estimate of time needed to complete: 1 Hour
+
+Start time: 9:30
+
+Finish time: 10:00
+
+Actual time needed to complete: 30 mins
 
 # Project Name
 
-**Author**: Jessica
+**Author**: Jessica & Eric & Hanna
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
