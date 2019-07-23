@@ -1,7 +1,5 @@
 @media all and (max-width:768px){
   
-  /*--  --*/
-
   body {
     width: 95%;
     margin: auto;
@@ -35,6 +33,20 @@
     background-color: #3D405B;
     color: white;
     height: 30px;
+  }
+
+  /*-- Show Page --*/
+  .bookResult {
+    background-color: lightgrey;
+    width: 75%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .bookResult > img {
+    border: 5px solid white;
+    margin-bottom: 15px;
   }
 
 
