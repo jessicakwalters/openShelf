@@ -22,6 +22,7 @@ app.set('view engine', 'ejs');
 // });
 app.get('/search', newSearch);
 app.post('/search', createSearch);
+app.post
 
 //Helper
 
@@ -37,8 +38,6 @@ function newSearch(request, response) {
 function createSearch(request, response) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
-  console.log(request.body);
-
   if (request.body.search[1] === 'title') {
     url += `+intitle:${request.body.search[0]}`;
   }
@@ -48,17 +47,21 @@ function createSearch(request, response) {
 
   superagent.get(url)
     .then( (results) => {
-      console.log(results.body.items[0]);
-      results.body.items.map ( (bookInfo) => {
-        let newBook = new Book(bookInfo);
-        //console.log(newBook);
+      let test = results.body.items.map ( (bookInfo) => {
+        return new Book(bookInfo);
       })
+      console.log('this is the first then', test);
+      return test;
+    }).then( results => {
+      console.log('this should be an array', results);
+      response.render('pages/searches/show', { searchResults: results });
     })
     .catch( (error) => {
       console.error(error);
     })
 
 }
+console.log();
 
 //Listen
 app.listen(PORT, () => {
