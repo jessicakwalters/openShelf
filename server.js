@@ -20,18 +20,41 @@ app.set('view engine', 'ejs');
 // app.get('/', (req, res) => {
 //     res.render('pages/index');
 // });
-app.get('/search', newSearch);
-app.post('/search', createSearch);
-app.post
+app.get('/', newSearch);
+app.post('/', createSearch);
+app.get(`*`, (showError));
 
 //Helper
 
 function Book(info) {
-  this.image = info.volumeInfo.imageLinks.thumbnail;
-  this.title = info.volumeInfo.title;
-  this.authors = info.volumeInfo.authors;
+  this.image = checkData(info, 'image');
+  this.title = checkData(info, 'title');
+  this.authors = checkData(info, 'authors');
 }
 
+function checkData(info, property) {
+  switch(property) {
+  case 'image':
+    return(info.volumeInfo.imageLinks ? info.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/128X192');
+  case 'title' :
+    return(info.volumeInfo.title ? info.volumeInfo.title : 'No title available');
+  case 'authors' :
+    return(info.volumeInfo.authors ? info.volumeInfo.authors : 'No authors available');
+  }
+}
+
+//error messages
+
+function handleError(error, response) {
+  console.error(error);
+  if(response) {
+    return response.status(500).send('Sorry something went wrong');
+  }
+}
+function showError(request, response) {
+  response.render('pages/error');
+}
+////
 function newSearch(request, response) {
   response.render('pages/index');
 }
@@ -57,7 +80,7 @@ function createSearch(request, response) {
       response.render('pages/searches/show', { searchResults: results });
     })
     .catch( (error) => {
-      console.error(error);
+      handleError(error , response);
     })
 
 }
