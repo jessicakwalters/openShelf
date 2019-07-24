@@ -35,4 +35,7 @@ div > div{
   box-shadow: 0 0 10px #6d6c6c;
   padding-top: 5%;
   padding-bottom: 5%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
