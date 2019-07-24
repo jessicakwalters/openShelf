@@ -15,9 +15,8 @@
     <div class="bookResult flex-container">
         <% books.forEach( book => { %>
           <div class="flex-item">
-            <img src= '<%= book.image_url %>'/>
-            <h4><%= book.title %></h4>
-            <h5><%= book.author %></h5>
+            <%- include('./books/detail', { book: book } ) %>
+            <a href="/books/<%= book.id %>">View Details</a>
           </div>
         <% }) %>
     </div>

@@ -30,25 +30,18 @@ app.set('view engine', 'ejs');
 app.get('/', getBooks);
 app.post('/search', createSearch);
 app.get('/search', newSearch);
+app.get('/books/:id', getBook);
 app.get('*', showError);
 
 //Helper
 
 function Book(info) {
-  this.image = checkData(info, 'image');
-  this.title = checkData(info, 'title');
-  this.authors = checkData(info, 'authors');
-}
-
-function checkData(info, property) {
-  switch(property) {
-  case 'image':
-    return(info.volumeInfo.imageLinks ? info.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/128X192');
-  case 'title' :
-    return(info.volumeInfo.title ? info.volumeInfo.title : 'No title available');
-  case 'authors' :
-    return(info.volumeInfo.authors ? info.volumeInfo.authors : 'No authors available');
-  }
+  this.image_url = info.volumeInfo.imageLinks ? info.volumeInfo.imageLinks.thumbnail : 'https://via.placeholder.com/128X192';
+  this.title = info.volumeInfo.title ? info.volumeInfo.title : 'No title available';
+  this.author = info.volumeInfo.authors ? info.volumeInfo.authors : 'No authors available';
+  this.isbn = info.volumeInfo.industryIdentifiers ? info.volumeInfo.industryIdentifiers[0].identifier : 'No ISBN available';
+  this.description = info.volumeInfo.description ? info.volumeInfo.description : 'No description available';
+  this.bookshelf;
 }
 
 function handleError(error, response) {
@@ -69,7 +62,6 @@ function getBooks( request, response ){
   let SQL = 'SELECT * FROM books;';
   return client.query(SQL)
     .then( results => {
-      console.log(results.rowCount, results.rows);
       if( results.rowCount === 0 ){
         response.render('/pages/index');
       } else { response.render('pages/index', { books: results.rows, rowCount: results.rowCount } ) }
@@ -78,7 +70,7 @@ function getBooks( request, response ){
       handleError( error, response )});
 }
 
-function createSearch(request, response) {
+function createSearch(request, response){
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
   if (request.body.search[1] === 'title') {
@@ -101,6 +93,17 @@ function createSearch(request, response) {
       handleError(error , response);
     })
 
+}
+
+function getBook( request, response ){
+  let SQL = `SELECT * FROM books WHERE id=${request.params.id};`;
+  return client.query(SQL)
+    .then( results => {
+      // console.log('queried id', results);
+      response.render('pages/books/show', { book: results.rows[0] });
+    })
+    .catch( (error) => {
+      handleError( error, response )});
 }
 
 //Listen
