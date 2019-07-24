@@ -39,3 +39,11 @@ div > div{
   margin-left: auto;
   margin-right: auto;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: default;
+}
