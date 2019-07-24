@@ -14,11 +14,7 @@
   <h2> Search Results </h2>
   <div class="bookResult flex-container">
     <% searchResults.forEach( book => { %>
-      <div class="flex-item">
-          <img src= '<%= book.image %>'/>
-          <h4><%= book.title %></h4>
-          <h5><%= book.authors %></h5>
-      </div>
+      <%- include('../books/detail', { book: book } ) %>
       <!-- <form class="flex-item" class="hide">
         <input type="text" name="image_url" value="<%= book.image %>"/> 
         <input type="text" name="title" value="<%= book.title %>"/>
