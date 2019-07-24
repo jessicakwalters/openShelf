@@ -13,9 +13,10 @@
 <body>
   <h2> Search Results </h2>
   <div class="bookResult flex-container">
-    <% searchResults.forEach( book => { %>
+    <% searchResults.forEach( ( book,  idx )=> { %>
       <%- include('../books/detail', { book: book } ) %>
-      <!-- <form class="flex-item" class="hide">
+      <button class="editDeets" type="submit" value="<%= idx %>">Edit Details</button>
+      <form class="flex-item hide" id="<%= idx %>">
         <input type="text" name="image_url" value="<%= book.image %>"/> 
         <input type="text" name="title" value="<%= book.title %>"/>
         <input type="text" name="author" value="<%= book.authors %>"/>
@@ -23,8 +24,10 @@
         <textarea name="description" rows="3" cols="3" value="<%= book.description %>"></textarea>
         <input type="text" name="bookshelf" placeholder="Bookshelf Name"/>
         <button class="show" type="submit">Save Book</button>
-      </form> -->
+      </form>
     <% }) %>
   </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./js/app.js"></script>
 </body>
 </html>
