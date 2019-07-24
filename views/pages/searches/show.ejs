@@ -8,15 +8,17 @@
   <link rel="stylesheet" href="/styles/base.css" type="text/css">
   <link rel="stylesheet" href="/styles/layout.css" type="text/css">
   <link rel="stylesheet" href="/styles/modules.css" type="text/css">
-  <title>Document</title>
+  <title>Book Results</title>
 </head>
 <body>
   <h2> Search Results </h2>
-  <div class="bookResult">
+  <div class="bookResult flex-container">
     <% searchResults.forEach( book => { %>
-      <img src= '<%= book.image %>'/> 
-      <h4><%= book.title %></h4>
-      <h5><%= book.authors %></h5>
+      <div class="flex-item">
+        <img src= '<%= book.image %>'/> 
+        <h4><%= book.title %></h4>
+        <h5><%= book.authors %></h5>
+      </div>
     <% }) %>
   </div>
 </body>
