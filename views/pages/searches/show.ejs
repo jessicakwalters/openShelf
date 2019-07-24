@@ -15,10 +15,19 @@
   <div class="bookResult flex-container">
     <% searchResults.forEach( book => { %>
       <div class="flex-item">
-        <img src= '<%= book.image %>'/> 
-        <h4><%= book.title %></h4>
-        <h5><%= book.authors %></h5>
+          <img src= '<%= book.image %>'/>
+          <h4><%= book.title %></h4>
+          <h5><%= book.authors %></h5>
       </div>
+      <!-- <form class="flex-item" class="hide">
+        <input type="text" name="image_url" value="<%= book.image %>"/> 
+        <input type="text" name="title" value="<%= book.title %>"/>
+        <input type="text" name="author" value="<%= book.authors %>"/>
+        <input type="text" name="isbn" value="<%= book.isbn %>"/>
+        <textarea name="description" rows="3" cols="3" value="<%= book.description %>"></textarea>
+        <input type="text" name="bookshelf" placeholder="Bookshelf Name"/>
+        <button class="show" type="submit">Save Book</button>
+      </form> -->
     <% }) %>
   </div>
 </body>

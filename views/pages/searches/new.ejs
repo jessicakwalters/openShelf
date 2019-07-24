@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/reset.css" type="text/css">
+    <link rel="stylesheet" href="/styles/base.css" type="text/css">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="/styles/modules.css" type="text/css">
+    
+    <title>Boooks</title>
+</head>
+<body class="flex-container">
+    <h1 class="flex-item">Search By Title Or Author</h1>
+    <form  class="flex-item" id="create" action="/search" method="post">
+        <fieldset>
+          <input class="flex-item" type="text" name = "search" placeholder="Title Or Author" required>
+        </fieldset>
+        <fieldset class="flex-item">
+            <label for="title">
+                <input type="radio" id="title" name="search" value="title" required>
+                <span>Title</span>
+            </label>
+        </fieldset>
+        <fieldset class="flex-item">
+            <label for="author">
+                <input type="radio" id="author" name="search" value="author" required>
+                <span>Author</span>
+            </label>
+        </fieldset>
+        <button class="flex-item" type="submit">Search From Google Books</button>
+    </form>
+</body>
+</html>

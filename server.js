@@ -3,10 +3,20 @@
 //App Dependencies
 const express = require('express');
 const superagent = require('superagent');
+const pg = require('pg');
+
+//Environment Variables
+require('dotenv').config();
 
 //App Setup
 const app = express();
 const PORT = process.env.PORT || 3000
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+
+client.on('error', (error) => {
+  console.log(error);
+});
 
 //App Middleware
 app.use(express.urlencoded({extended: true}));
@@ -17,11 +27,9 @@ app.set('view engine', 'ejs');
 
 //API ROUTES
 
-// app.get('/', (req, res) => {
-//     res.render('pages/index');
-// });
-app.get('/', newSearch);
-app.post('/', createSearch);
+app.get('/', getBooks);
+app.post('/search', createSearch);
+app.get('/search', newSearch);
 app.get('*', showError);
 
 //Helper
@@ -54,7 +62,20 @@ function showError(request, response) {
 }
 
 function newSearch(request, response) {
-  response.render('pages/index');
+  response.render('pages/searches/new');
+}
+
+function getBooks( request, response ){
+  let SQL = 'SELECT * FROM books;';
+  return client.query(SQL)
+    .then( results => {
+      console.log(results.rowCount, results.rows);
+      if( results.rowCount === 0 ){
+        response.render('/pages/index');
+      } else { response.render('pages/index', { books: results.rows, rowCount: results.rowCount } ) }
+    })
+    .catch( (error) => {
+      handleError( error, response )});
 }
 
 function createSearch(request, response) {
