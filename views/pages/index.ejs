@@ -7,30 +7,28 @@
     <link rel="stylesheet" href="/styles/base.css" type="text/css">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css">
     <link rel="stylesheet" href="/styles/modules.css" type="text/css">
-    <title>Document</title>
+    
+    <title>Boooks</title>
 </head>
-<body>
-  <header>
-    <h2>Best Books!</h2>
-  </header>
-  <main>
-    <h3>Search By Title Or Author</h3>
-    <form id="create" action="/" method="post">
-        <input type="text" name = "search" placeholder="Title Or Author" required>
+<body class="flex-container">
+    <h1 class="flex-item">Search By Title Or Author</h1>
+    <form  class="flex-item" id="create" action="/" method="post">
         <fieldset>
+          <input class="flex-item" type="text" name = "search" placeholder="Title Or Author" required>
+        </fieldset>
+        <fieldset class="flex-item">
             <label for="title">
-                <span>Title</span>
                 <input type="radio" id="title" name="search" value="title" required>
+                <span>Title</span>
             </label>
         </fieldset>
-        <fieldset>
+        <fieldset class="flex-item">
             <label for="author">
-                <span>Author</span>
                 <input type="radio" id="author" name="search" value="author" required>
+                <span>Author</span>
             </label>
         </fieldset>
-        <button type="submit">Search From Google Books</button>
+        <button class="flex-item" type="submit">Search From Google Books</button>
     </form>
-  </main>
 </body>
 </html>
