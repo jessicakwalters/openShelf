@@ -32,6 +32,7 @@ app.post('/search', createSearch);
 app.get('/search', newSearch);
 app.get('/books/:id', getBook);
 app.get('*', showError);
+app.post('/books', saveBook);
 
 //Helper
 
@@ -101,6 +102,19 @@ function getBook( request, response ){
     .then( results => {
       // console.log('queried id', results);
       response.render('pages/books/show', { book: results.rows[0] });
+    })
+    .catch( (error) => {
+      handleError( error, response )});
+}
+
+function saveBook(request , response) {
+  let { title , author , isbn, image_url, description , bookshelf } = request.body;
+  console.log(request.body);
+  let SQL = `INSERT INTO books( title , author , isbn, image_url, description , bookshelf) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
+  let values =  [title , author , isbn, image_url, description , bookshelf];
+  client.query(SQL, values)
+    .then(results => {
+      response.redirect(`books/${results.rows[0].id}`);
     })
     .catch( (error) => {
       handleError( error, response )});
