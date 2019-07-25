@@ -16,10 +16,11 @@
     <% searchResults.forEach( ( book,  idx )=> { %>
       <%- include('../books/detail', { book: book } ) %>
       <button class="editDeets" type="submit" value="<%= idx %>">Edit Details</button>
-      <form class="flex-item flex-container hide" id="<%= idx %>">
+      <form class="flex-item flex-container hide" id="<%= idx %>" action = '/books' method = 'POST'>
         <label for="title">Title
           <input type="text" name="title" value="<%= book.title %>"/>
         </label>
+        <input type="hidden" name="image_url" value="<%= book.image_url %>"/>
         <label for="author">Author
           <input type="text" name="author" value="<%= book.author %>"/>
         </label>
