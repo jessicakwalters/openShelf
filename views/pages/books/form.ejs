@@ -1,0 +1,20 @@
+<button class="editDeets" type="submit" value="<%= id %>">Edit Details</button>
+<form class="flex-item flex-container hide" id="<%= id %>" action = '<%= route %>' method = 'POST'>
+  <label for="title">Title
+    <input type="text" name="title" value="<%= book.title %>"/>
+  </label>
+  <input type="hidden" name="image_url" value="<%= book.image_url %>"/>
+  <label for="author">Author
+    <input type="text" name="author" value="<%= book.author %>"/>
+  </label>
+  <label for="isbn">ISBN
+    <input type="text" name="isbn" value="<%= book.isbn %>"/>
+  </label>
+  <textarea name="description" rows="20" cols="30" value=""><%= book.description %></textarea>
+  <label>
+      bookshelf name:
+    <input type="text" name="bookshelf" placeholder="Bookshelf Name" value='<%= book.bookshelf %>' />
+  </label>
+  
+  <button class="show" type="submit">Save Book</button>
+</form>

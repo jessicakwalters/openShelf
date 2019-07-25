@@ -13,24 +13,9 @@
 <body>
   <h2> Search Results </h2>
   <div class="bookResult flex-container">
-    <% searchResults.forEach( ( book,  idx )=> { %>
+    <% searchResults.forEach( ( book,  id )=> { %>
       <%- include('../books/detail', { book: book } ) %>
-      <button class="editDeets" type="submit" value="<%= idx %>">Edit Details</button>
-      <form class="flex-item flex-container hide" id="<%= idx %>" action = '/books' method = 'POST'>
-        <label for="title">Title
-          <input type="text" name="title" value="<%= book.title %>"/>
-        </label>
-        <input type="hidden" name="image_url" value="<%= book.image_url %>"/>
-        <label for="author">Author
-          <input type="text" name="author" value="<%= book.author %>"/>
-        </label>
-        <label for="isbn">ISBN
-          <input type="text" name="isbn" value="<%= book.isbn %>"/>
-        </label>
-        <textarea name="description" rows="20" cols="30" value=""><%= book.description %></textarea>
-        <input type="text" name="bookshelf" placeholder="Bookshelf Name"/>
-        <button class="show" type="submit">Save Book</button>
-      </form>
+      <%- include('../books/form', { book: book, id:id , route : '/books' } ) %>
     <% }) %>
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
