@@ -1,5 +1,6 @@
 <button class="editDeets" type="submit" value="<%= id %>">Edit Details</button>
 <form class="flex-item flex-container hide" id="<%= id %>" action = '<%= route %>' method = 'POST'>
+    <input type = "hidden" name = "_method" value = "<%= value %>">
   <label for="title">Title
     <input type="text" name="title" value="<%= book.title %>"/>
   </label>

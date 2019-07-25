@@ -12,6 +12,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000
 const client = new pg.Client(process.env.DATABASE_URL);
+const methodOverride = require('method-override');
 client.connect();
 
 client.on('error', (error) => {
@@ -21,6 +22,14 @@ client.on('error', (error) => {
 //App Middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.use(methodOverride((request, response) => {
+  if(request.body && typeof request.body === 'object' && '_method' in request.body) {
+    let method = request.body._method;
+    console.log(method);
+    delete request.body._method;
+    return method;
+  }
+}));
 
 //View engine
 app.set('view engine', 'ejs');
@@ -33,7 +42,7 @@ app.get('/search', newSearch);
 app.get('/books/:id', getBook);
 app.get('*', showError);
 app.post('/books', saveBook);
-//app.put('/books/:id', updateBook)
+app.put('/books/:id', updateBook)
 
 //Helper
 
@@ -121,6 +130,19 @@ function saveBook(request , response) {
       handleError( error, response )});
 }
 
+function updateBook(request, response) {
+  let { title , author , isbn, image_url, description , bookshelf } = request.body;
+  let SQL = `UPDATE books SET title=$1 , author=$2 , isbn=$3, image_url=$4 , description=$5 , bookshelf=$6 WHERE id=$7;`;
+  let values =  [title , author , isbn, image_url, description , bookshelf, request.params.id];
+  client.query(SQL, values)
+    .then(results => {
+      console.log(results);
+      response.redirect(`${request.params.id}`);
+    })
+    .catch( (error) => {
+      handleError( error, response )});
+
+}
 //Listen
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`)
