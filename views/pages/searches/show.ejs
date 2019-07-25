@@ -16,12 +16,17 @@
     <% searchResults.forEach( ( book,  idx )=> { %>
       <%- include('../books/detail', { book: book } ) %>
       <button class="editDeets" type="submit" value="<%= idx %>">Edit Details</button>
-      <form class="flex-item hide" id="<%= idx %>">
-        <input type="text" name="image_url" value="<%= book.image %>"/> 
-        <input type="text" name="title" value="<%= book.title %>"/>
-        <input type="text" name="author" value="<%= book.authors %>"/>
-        <input type="text" name="isbn" value="<%= book.isbn %>"/>
-        <textarea name="description" rows="3" cols="3" value="<%= book.description %>"></textarea>
+      <form class="flex-item flex-container hide" id="<%= idx %>">
+        <label for="title">Title
+          <input type="text" name="title" value="<%= book.title %>"/>
+        </label>
+        <label for="author">Author
+          <input type="text" name="author" value="<%= book.author %>"/>
+        </label>
+        <label for="isbn">ISBN
+          <input type="text" name="isbn" value="<%= book.isbn %>"/>
+        </label>
+        <textarea name="description" rows="20" cols="30" value=""><%= book.description %></textarea>
         <input type="text" name="bookshelf" placeholder="Bookshelf Name"/>
         <button class="show" type="submit">Save Book</button>
       </form>
