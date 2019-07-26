@@ -15,6 +15,10 @@
   <div>
     <div class="flex-container">
       <%- include('detail') %>
+      <form action="/books/<%= book.id %>" method = 'POST'>
+        <input type="hidden" name = "_method" value = "DELETE">
+        <button type="submit" >Delete Book</button>
+      </form>
       <%- include('form' , {route : `/books/${book.id}`, id:book.id , value:'PUT' } ) %>
     </div>
   </div>

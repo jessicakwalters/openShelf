@@ -42,7 +42,8 @@ app.get('/search', newSearch);
 app.get('/books/:id', getBook);
 app.get('*', showError);
 app.post('/books', saveBook);
-app.put('/books/:id', updateBook)
+app.put('/books/:id', updateBook);
+app.delete('/books/:id', deleteBook);
 
 //Helper
 
@@ -141,7 +142,17 @@ function updateBook(request, response) {
     })
     .catch( (error) => {
       handleError( error, response )});
+}
 
+function deleteBook( request, response) {
+  let SQL = 'DELETE FROM books WHERE id = $1;';
+  let values = [ request.params.id ];
+  client.query( SQL, values )
+    .then( results => {
+      response.redirect('/');
+    }).catch(error => {
+      handleError( error, response )
+    });
 }
 //Listen
 app.listen(PORT, () => {
