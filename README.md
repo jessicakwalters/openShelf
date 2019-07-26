@@ -23,6 +23,18 @@ Finish time: 10:00
 
 Actual time needed to complete: 30 mins
 
+=======================================
+
+Number and name of feature: The project
+
+Estimate of time needed to complete: A week
+
+Start time: Monday
+
+Finish time: Friday
+
+Actual time needed to complete: A week
+
 # Project Name
 
 **Author**: Jessica & Eric & Hanna
