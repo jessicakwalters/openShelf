@@ -7,7 +7,7 @@ const pg = require('pg');
 
 //Environment Variables
 require('dotenv').config();
-
+console.log();
 //App Setup
 const app = express();
 const PORT = process.env.PORT || 3000
