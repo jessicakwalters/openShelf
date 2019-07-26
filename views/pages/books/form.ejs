@@ -1,21 +1,22 @@
-<button class="editDeets" type="submit" value="<%= id %>">Edit Details</button>
-<form class="flex-item flex-container hide" id="<%= id %>" action = '<%= route %>' method = 'POST'>
-    <input type = "hidden" name = "_method" value = "<%= value %>">
-  <label for="title">Title
-    <input type="text" name="title" value="<%= book.title %>"/>
-  </label>
-  <input type="hidden" name="image_url" value="<%= book.image_url %>"/>
-  <label for="author">Author
-    <input type="text" name="author" value="<%= book.author %>"/>
-  </label>
-  <label for="isbn">ISBN
-    <input type="text" name="isbn" value="<%= book.isbn %>"/>
-  </label>
-  <textarea name="description" rows="20" cols="30" value=""><%= book.description %></textarea>
-  <label>
-      bookshelf name:
-    <input type="text" name="bookshelf" placeholder="Bookshelf Name" value='<%= book.bookshelf %>' />
-  </label>
-  
-  <button class="show" type="submit">Save Book</button>
-</form>
+<section class="flex-container">
+  <button class="editDeets" type="submit" value="<%= id %>">Edit Details</button>
+  <form class="flex-item flex-container hide" id="<%= id %>" action = '<%= route %>' method = 'POST'>
+      <input type = "hidden" name = "_method" value = "<%= value %>">
+    <label class="edit" for="title">Title:
+      <input type="text" name="title" value="<%= book.title %>"/>
+    </label>
+    <input type="hidden" name="image_url" value="<%= book.image_url %>"/>
+    <label class="edit" for="author">Author:
+      <input type="text" name="author" value="<%= book.author %>"/>
+    </label>
+    <label class="edit" for="isbn">ISBN:
+      <input type="text" name="isbn" value="<%= book.isbn %>"/>
+    </label>
+    <textarea class="edit" name="description" rows="10" cols="30" value=""><%= book.description %></textarea>
+    <label class="edit">
+        Bookshelf Name:
+      <input type="text" name="bookshelf" placeholder="Bookshelf Name" value='<%= book.bookshelf %>' />
+    </label>
+    <button type="submit">Save Book</button>
+  </form>
+</section>
