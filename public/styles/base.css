@@ -34,3 +34,13 @@ input[type=radio] {
 textarea:focus, input:focus{
     outline: none;
 }
+
+section {
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+textarea {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 30px;
+}
